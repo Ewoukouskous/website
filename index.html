@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusConnect - Le Futur du Social</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-purple': '#9966FF',
+                        'dark-navy': '#1A1B3A',
+                        'medium-blue': '#2E3192',
+                        'light-purple': '#C8B5FF',
+                        'very-light': '#F0F0FF',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'bounce-slow': 'bounce 3s ease-in-out infinite',
+                    },
+                    backdropBlur: {
+                        '3xl': '64px',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(3deg); }
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #9966FF 0%, #C8B5FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hover-scale {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hover-scale:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .btn-glow {
+            box-shadow: 0 0 20px rgba(153, 102, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 30px rgba(153, 102, 255, 0.5);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="font-inter bg-white text-dark-navy">
+
+<!-- Navigation -->
+<nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 ease-in-out">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <div class="flex items-center">
+                <button onclick="showPage('home')" class="text-2xl font-bold text-primary-purple hover:scale-105 transition-transform duration-300 flex items-center gap-2">
+                    <img src="static/assets/logo.png" alt="Logo" class="w-7 h-7 p-1 bg-white rounded-full object-contain relative -top-[1px]" />
+                    MOVOW
+                </button>
+            </div>
+            <div class="hidden md:block">
+                <div class="ml-10 flex items-baseline space-x-8">
+                    <button onclick="showPage('home')" class="nav-link text-dark-navy hover:text-primary-purple px-3 py-2 text-sm font-medium transition-all duration-300 relative group">
+                        <span class="material-icons text-sm mr-1">home</span>
+                        Accueil
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-purple transition-all duration-300 group-hover:w-full"></span>
+                    </button>
+                    <button onclick="showPage('devlogs')" class="nav-link text-dark-navy hover:text-primary-purple px-3 py-2 text-sm font-medium transition-all duration-300 relative group">
+                        <span class="material-icons text-sm mr-1">code</span>
+                        Devlogs
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-purple transition-all duration-300 group-hover:w-full"></span>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile menu button -->
+            <div class="md:hidden">
+                <button onclick="toggleMobileMenu()" class="text-dark-navy hover:text-primary-purple">
+                    <span class="material-icons">menu</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden hidden glass-effect">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <button onclick="showPage('home'); toggleMobileMenu()" class="block px-3 py-2 text-base font-medium text-dark-navy hover:text-primary-purple">
+                <span class="material-icons text-sm mr-2">home</span>Accueil
+            </button>
+            <button onclick="showPage('devlogs'); toggleMobileMenu()" class="block px-3 py-2 text-base font-medium text-dark-navy hover:text-primary-purple">
+                <span class="material-icons text-sm mr-2">code</span>Devlogs
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Home Page -->
+<div id="home" class="page-section">
+    <!-- Hero Section -->
+    <section class="min-h-screen bg-gradient-to-br from-primary-purple via-medium-blue to-dark-navy flex items-center justify-center relative overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0">
+            <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-white/10 rounded-full animate-float"></div>
+            <div class="absolute top-3/4 right-1/4 w-24 h-24 bg-white/5 rounded-full animate-float" style="animation-delay: -2s;"></div>
+            <div class="absolute top-1/2 left-3/4 w-16 h-16 bg-white/10 rounded-full animate-float" style="animation-delay: -4s;"></div>
+        </div>
+
+        <div class="text-center text-white px-4 sm:px-6 lg:px-8 relative z-10">
+            <div data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="text-5xl md:text-7xl font-black mb-6 animate__animated animate__fadeInUp">
+                    MO<span class="text-light-purple">V</span>OW
+                </h1>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-90">
+                    Un réseau social pour ceux qui vivent entre deux séances.
+                </p>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+                <button onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})"
+                        class="inline-flex items-center gap-3 bg-white text-primary-purple px-8 py-4 rounded-full font-semibold text-lg btn-glow hover:bg-gray-50 transition-all duration-300">
+                    <span class="material-icons">explore</span>
+                    Découvrir MOVOW
+                </button>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
+            <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 bg-very-light relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="text-5xl font-extrabold text-dark-navy mb-4">
+                    Révolutionner la façon de <span class="gradient-text">discuter</span>
+                </h2>
+                <p class="text-xl text-medium-blue max-w-3xl mx-auto">
+                    Découvrez les fonctionnalités qui font de MOVOW <span class="gradient-text">LE</span> réseau social du cinéma
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- Card -->
+                <div class="relative bg-white rounded-3xl p-10 shadow-2xl group transform transition-all duration-500 hover:-translate-y-2 hover:rotate-1 border border-purple-100">
+                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2">
+                        <div class="w-20 h-20 bg-gradient-to-br from-primary-purple to-light-purple rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110">
+                            <span class="material-symbols-outlined text-white text-3xl">sms</span>
+                        </div>
+                    </div>
+                    <div class="mt-16 text-center">
+                        <h3 class="text-2xl font-bold text-dark-navy mb-3">Intéractions</h3>
+                        <p class="text-medium-blue leading-relaxed">
+                            Movow est le réseau social conçu pour des intéractions fluides et intéressante entre utilisateurs.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card -->
+                <div class="relative bg-white rounded-3xl p-10 shadow-2xl group transform transition-all duration-500 hover:-translate-y-2 hover:-rotate-1 border border-purple-100">
+                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2">
+                        <div class="w-20 h-20 bg-gradient-to-br from-primary-purple to-light-purple rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110">
+                            <span class="material-symbols-outlined text-white text-3xl">security</span>
+                        </div>
+                    </div>
+                    <div class="mt-16 text-center">
+                        <h3 class="text-2xl font-bold text-dark-navy mb-3">Sécurité</h3>
+                        <p class="text-medium-blue leading-relaxed">
+                            Une multitude de protections vous sera proposées pour garantir la sécurité de vos données.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card -->
+                <div class="relative bg-white rounded-3xl p-10 shadow-2xl group transform transition-all duration-500 hover:-translate-y-2 hover:rotate-1 border border-purple-100">
+                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2">
+                        <div class="w-20 h-20 bg-gradient-to-br from-primary-purple to-light-purple rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110">
+                            <span class="material-symbols-outlined text-white text-3xl">verified</span>
+                        </div>
+                    </div>
+                    <div class="mt-16 text-center">
+                        <h3 class="text-2xl font-bold text-dark-navy mb-3">Authenticité</h3>
+                        <p class="text-medium-blue leading-relaxed">
+                            Des connexions humaines dans un écosystème sain, sans filtres, sans mensonges.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Autres cartes à dupliquer dans le même format -->
+                <!-- Créativité -->
+                <div class="relative bg-white rounded-3xl p-10 shadow-2xl group transform transition-all duration-500 hover:-translate-y-2 hover:-rotate-1 border border-purple-100">
+                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2">
+                        <div class="w-20 h-20 bg-gradient-to-br from-primary-purple to-light-purple rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110">
+                            <span class="material-symbols-outlined text-white text-3xl">palette</span>
+                        </div>
+                    </div>
+                    <div class="mt-16 text-center">
+                        <h3 class="text-2xl font-bold text-dark-navy mb-3">Débattez</h3>
+                        <p class="text-medium-blue leading-relaxed">
+                            MOVOW est conçu pour favoriser le débat et l'échange de connaissance autour de vos sujets préférés.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Communauté -->
+                <div class="relative bg-white rounded-3xl p-10 shadow-2xl group transform transition-all duration-500 hover:-translate-y-2 hover:rotate-1 border border-purple-100">
+                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2">
+                        <div class="w-20 h-20 bg-gradient-to-br from-primary-purple to-light-purple rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110">
+                            <span class="material-symbols-outlined text-white text-3xl">groups</span>
+                        </div>
+                    </div>
+                    <div class="mt-16 text-center">
+                        <h3 class="text-2xl font-bold text-dark-navy mb-3">Communauté</h3>
+                        <p class="text-medium-blue leading-relaxed">
+                            Tissez des liens réels avec des personnes partageant votre façon de voir le monde du cinéma.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Performance -->
+                <div class="relative bg-white rounded-3xl p-10 shadow-2xl group transform transition-all duration-500 hover:-translate-y-2 hover:-rotate-1 border border-purple-100">
+                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2">
+                        <div class="w-20 h-20 bg-gradient-to-br from-primary-purple to-light-purple rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110">
+                            <span class="material-symbols-outlined text-white text-3xl">star</span>
+                        </div>
+                    </div>
+                    <div class="mt-16 text-center">
+                        <h3 class="text-2xl font-bold text-dark-navy mb-3">Notez</h3>
+                        <p class="text-medium-blue leading-relaxed">
+                            Sur MOVOW, la possibilité de vous exprimer passe aussi par des notes sur vos découvertes cinéma récente.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-4xl md:text-5xl font-bold text-dark-navy mb-6">
+                        Redéfinir le <span class="gradient-text">cinéma social</span>
+                    </h2>
+                    <div class="space-y-6 text-lg text-medium-blue leading-relaxed">
+                        <p>
+                            MOVOW n’est pas un simple réseau social. C’est un lieu pensé pour celles et ceux qui vivent le cinéma comme une passion, un espace où chaque post devient une scène, chaque commentaire un dialogue, et chaque échange un moment de cinéma.
+                        </p>
+                        <p>
+                            Ici, pas de critiques élitistes ou de jugements figés : MOVOW célèbre l’expression libre, la diversité des points de vue, et la magie du débat entre amateurs comme cinéphiles aguerris. Parce que le cinéma est fait pour être ressenti, discuté, aimé.
+                        </p>
+<!--                        <p class="font-semibold text-dark-navy">-->
+<!--                            Rejoins MOVOW et fais entendre ta voix dans la salle la plus vivante du 7e art.-->
+<!--                        </p>-->
+                    </div>
+                    <!--                    <div class="mt-8 flex flex-wrap gap-4">-->
+<!--                        <button class="inline-flex items-center gap-2 bg-primary-purple text-white px-6 py-3 rounded-full font-semibold hover:bg-medium-blue transition-colors duration-300">-->
+<!--                            <span class="material-icons">notifications</span>-->
+<!--                            Être notifié du lancement-->
+<!--                        </button>-->
+<!--                    </div>-->
+                </div>
+                <div class="relative" data-aos="fade-left">
+                    <div class="w-full h-96 bg-gradient-to-br from-light-purple to-primary-purple rounded-3xl flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/10"></div>
+                        <span class="material-symbols-outlined text-white text-8xl relative z-10">auto_awesome</span>
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-white/20 rounded-full animate-pulse-slow"></div>
+                        <div class="absolute bottom-4 left-4 w-8 h-8 bg-white/30 rounded-full animate-float"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Devlogs Page -->
+<div id="devlogs" class="page-section hidden">
+    <section class="min-h-screen py-20 bg-very-light">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h1 class="text-4xl md:text-5xl font-bold text-dark-navy mb-4">
+                    Journal de <span class="gradient-text">Développement</span>
+                </h1>
+                <p class="text-xl text-medium-blue max-w-2xl mx-auto">
+                    Suivez l'évolution de MOVOW étape par étape
+                </p>
+            </div>
+
+            <!-- Empty State -->
+            <div class="text-center py-16" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-24 h-24 bg-gradient-to-br from-primary-purple to-light-purple rounded-full flex items-center justify-center mx-auto mb-8">
+                    <span class="material-symbols-outlined text-white text-4xl">construction</span>
+                </div>
+                <h3 class="text-2xl font-bold text-dark-navy mb-4">Bientôt disponible</h3>
+                <p class="text-lg text-medium-blue mb-8 max-w-md mx-auto">
+                    Les devlogs seront publiés ici au fur et à mesure du développement de MOVOW.
+                </p>
+                <button onclick="window.location.href='https://pouler.fr';"
+                        class="inline-flex items-center gap-2 bg-primary-purple text-white px-6 py-3 rounded-full font-semibold hover:bg-medium-blue transition-colors duration-300">
+                    <span class="material-icons">notifications</span>
+                    M'alerter des nouveautés
+                </button>
+            </div>
+
+            <!-- Example Devlog (hidden by default) -->
+            <article class="bg-white rounded-2xl p-8 shadow-xl mb-8 hidden" data-aos="fade-up">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-br from-primary-purple to-light-purple rounded-full flex items-center justify-center">
+                        <span class="material-icons text-white">article</span>
+                    </div>
+                    <div>
+                        <div class="text-primary-purple font-semibold">26 Juin 2025</div>
+                        <div class="text-sm text-medium-blue">Version 0.1.0</div>
+                    </div>
+                </div>
+                <h2 class="text-2xl font-bold text-dark-navy mb-4">Premier Devlog - Les Fondations</h2>
+                <div class="prose prose-lg text-medium-blue leading-relaxed">
+                    <p>Aujourd'hui marque le début officiel du développement de NexusConnect. Nous avons commencé par définir l'architecture technique et les premiers mockups de l'interface utilisateur.</p>
+                    <p>Les priorités de cette première phase : sécurité, performance et expérience utilisateur. Nous voulons créer quelque chose de vraiment différent.</p>
+                </div>
+                <div class="flex items-center justify-between mt-6 pt-6 border-t border-gray-100">
+                    <div class="flex items-center gap-4">
+                        <button class="flex items-center gap-2 text-medium-blue hover:text-primary-purple transition-colors">
+                            <span class="material-icons text-sm">thumb_up</span>
+                            <span>12</span>
+                        </button>
+                        <button class="flex items-center gap-2 text-medium-blue hover:text-primary-purple transition-colors">
+                            <span class="material-icons text-sm">comment</span>
+                            <span>3</span>
+                        </button>
+                    </div>
+                    <button class="flex items-center gap-2 text-medium-blue hover:text-primary-purple transition-colors">
+                        <span class="material-icons text-sm">share</span>
+                        <span>Partager</span>
+                    </button>
+                </div>
+            </article>
+        </div>
+    </section>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark-navy text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center">
+                    <button onclick="showPage('home')" class="text-2xl font-bold text-primary-purple hover:scale-105 transition-transform duration-300 flex items-center gap-2">
+                        <img src="static/assets/logo.png" alt="Logo" class="w-7 h-7 p-1 bg-white rounded-full object-contain relative -top-[1px]" />
+                        MOVOW
+                    </button>
+                </div>
+                <p class="text-gray-300 mb-6 max-w-md">
+                    Un réseau social pour ceux qui vivent entre deux séances.
+                </p>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-400">&copy; 2025 MOVOW. Tous droits réservés.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Initialize AOS
+    AOS.init({
+        duration: 1000,
+        easing: 'ease-out-cubic',
+        once: true,
+        offset: 100
+    });
+
+    // Navigation functionality
+    function showPage(pageId) {
+        // Hide all pages
+        document.querySelectorAll('.page-section').forEach(page => {
+            page.classList.add('hidden');
+            page.classList.remove('animate__fadeIn');
+        });
+
+        // Show selected page with animation
+        const targetPage = document.getElementById(pageId);
+        targetPage.classList.remove('hidden');
+        targetPage.classList.add('animate__animated', 'animate__fadeIn');
+
+        // Scroll to top smoothly
+        window.scrollTo({top: 0, behavior: 'smooth'});
+
+        // Refresh AOS animations
+        setTimeout(() => {
+            AOS.refresh();
+        }, 100);
+    }
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden');
+    }
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('glass-effect');
+            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+        } else {
+            navbar.classList.remove('glass-effect');
+            navbar.style.backgroundColor = 'transparent';
+        }
+    });
+
+    // Smooth scrolling for internal links
+    document.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
+            e.preventDefault();
+            const target = document.querySelector(e.target.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+    });
+
+    // Add some interactive effects
+    document.addEventListener('DOMContentLoaded', () => {
+        // Add hover effects to cards
+        const cards = document.querySelectorAll('.hover-scale');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    });
+
+    // Parallax effects for hero section
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('[data-parallax]');
+
+        parallaxElements.forEach(element => {
+            const speed = element.dataset.parallax;
+            const yPos = -(scrolled * speed);
+            element.style.transform = `translateY(${yPos}px)`;
+        });
+    });
+</script>
+</body>
+</html>
